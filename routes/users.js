@@ -22,18 +22,31 @@ module.exports = router;
 /* GET users listing. */
 router.post('/login',function(req,res,next) {
   if(!newUser.body){
-    res.send("Please send some data")
+    res.send("Please send some data");
   }
-  issueRegister.findone
-  var newUser = new User({
-    name: req.body.name,
-    phone: req.body.phone,
-    password: req.body.password
+  issueRegister.findone({phone: req.body.phone}, function(err, found_user){
+    if(err){
+      res.send(err);
+    }
+    else {
+      if(found_user){
+        res.redirect('/users/dashboard');
+      }
+      else {
+        var newUser = new User({
+          name: req.body.name,
+          phone: req.body.phone,
+          password: req.body.password
+        });
+        newUser.save();
+        console.log(newUser);
+        // res.render('user-register');
+      }
+    }
   });
-  newUser.save();
-  console.log(newUser);
-  // res.render('user-register');
 });
-
+router.post('/users/dashboard',function(req,res,next) {
+  res.render('dashboard')
+})
 router.get('/');
 module.exports = router;
