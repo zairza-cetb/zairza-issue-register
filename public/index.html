@@ -1,22 +1,40 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Issue Register</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id='wrapper'>
-      Name <br>
-      <input id='name' type="text" name="1" value=""><br>
-      Phone Number <br>
-      <input id = 'phone' type="text" name="1" value=""><br>
-      Password <br>
-      <input id = 'password' type="password" name="1" value=""><br>
-      Confirm Password <br>
-      <input id = 'confirm-password' type="password" name="1" value=""><br>
-      <br>
-      <input type="button" onclick='' value="Issue" class="butn"><br>
-      <input type="button" onclick='' value="Return" class="butn"><br>
-    </div>
-  </body>
-</html>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Zairza</title>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+      <div class="container-fluid" style="background-color:rgba(0, 150, 136, 0.7)">
+        <div class="row">
+            <nav class="navbar navbar-inverse" style="background-color:#0d47a1 blue darken-4">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="#">ISSUE REGISTER</a>
+              </div>
+            </nav>
+       </div>
+        <div class="row" style="margin-top:5%;">
+           <div class="col col-lg-4 col-sm-12 col-sm-offset-4 text-center">
+              <input type="text" id='name' name="1" class="form-control input-lg col-lg-4" placeholder="Name">
+           </div>
+        </div>
+        <div class="row" style="margin-top:3%;">
+           <div class="col col-lg-4 col-sm-12 col-sm-offset-4 text-center">
+              <input type="text" id='phone' name="1" class="form-control input-lg col-lg-4" placeholder="Phone number">
+           </div>
+        </div>
+        <div class="row" style="margin-top:3%;">
+           <div class="col col-lg-4 col-sm-12 col-sm-offset-4 text-center">
+              <input type="password" id='password' name="1" class="form-control input-lg col-lg-4" placeholder="Password">
+           </div>
+        </div>
+        <div class="row text-center"style="margin-top:9%; margin-bottom:50%">
+           <button id="submitbtn" type="button" class="btn btn-warning btn-lg" onclick="common()">SUBMIT</button>
+        </div>
+     </div>
+    </body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </html>
