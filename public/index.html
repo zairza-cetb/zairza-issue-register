@@ -6,17 +6,16 @@
   </head>
   <body>
     <div id='wrapper'>
-      Name <br>
-      <input id='name' type="text" name="1" value=""><br>
-      Phone Number <br>
-      <input id = 'phone' type="text" name="1" value=""><br>
-      Password <br>
-      <input id = 'password' type="password" name="1" value=""><br>
-      Confirm Password <br>
-      <input id = 'confirm-password' type="password" name="1" value=""><br>
-      <br>
-      <input type="button" onclick='' value="Issue" class="butn"><br>
-      <input type="button" onclick='' value="Return" class="butn"><br>
+      <form action="/users/login" method="POST">
+        Name <br>
+        <input id='name' type="text" name="1" value=""><br>
+        Phone Number <br>
+        <input id = 'phone' type="text" name="1" value=""><br>
+        Password <br>
+        <input id = 'password' type="password" name="1" value=""><br>
+        <br>
+        <input type="submit" value="Submit" class="butn"><br>
+    </form>
     </div>
   </body>
 </html>
