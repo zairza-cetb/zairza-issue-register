@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
+var User = require('../models/user.js');
 var router = express.Router();
 
 module.exports = router;
@@ -21,7 +21,8 @@ module.exports = router;
 
 /* GET users listing. */
 router.post('/login',function(req,res,next) {
-  if(!newUser.body){
+  console.log("qwerty");
+  if(!req.body){
     res.send("Please send some data");
   }
   issueRegister.findone({phone: req.body.phone}, function(err, found_user){
