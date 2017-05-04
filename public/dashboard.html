@@ -34,8 +34,44 @@
          </div>
          <div class="row" style="margin-left:55%;margin-top:15%;padding-bottom:10%">
             <div class="col s12 m6">
-               <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+               <a class="btn-floating btn-large waves-effect waves-light red" href="#add_items"><i class="material-icons">add</i></a>
             </div>
+         </div>
+         <!-- Modal Structure -->
+         <div id="add_items" class="modal">
+           <div class="modal-content">
+             <h4>Add items</h4>
+             <form action='/' method='POST'>
+               <table style="width:40%">
+                 <tr>
+                   <td align="right">Items:-</td>
+                   <td align="left"><div class="input-field inline">
+                     <input id="items" type="text">
+                   </div>
+                 </td>
+               </tr>
+               <tr>
+                 <td align="right">Quantity:-</td>
+                 <td align="left"><div class="input-field inline">
+                   <input id="quantity" type="number">
+                 </div>
+               </td>
+             </tr>
+           </table>
+               <!-- Items:-
+               <div class="input-field inline">
+                 <input id="items" type="text">
+               </div>
+               <br>
+               Quantity:-
+               <div class="input-field inline">
+                 <input id="quantity" type="number">
+               </div> -->
+             </form>
+           </div>
+           <div class="modal-footer">
+             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+           </div>
          </div>
       </div>
    </body>
@@ -43,4 +79,11 @@
    <!-- <script src="bootstrap_files/js/bootstrap.min.js"></script> -->
    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+   <script>
+    $(document).ready(function(){
+      $('#add_items').modal();
+     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    //  $('.modal-trigger').leanModal();
+   });
+   </script>
 </html>
