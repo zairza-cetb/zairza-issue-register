@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var path = require('path');
 
 module.exports = router;
 
@@ -16,7 +17,14 @@ router.post('/login',function(req,res,next) {
       }
       else {
         if(foundUser){
-          res.send(foundUser)
+          if(req.body.password == foundUser.password){
+            req.session.name = foundUser.name;
+            req.session.phone = foundUser.phone;
+            res.redirect('/user/dashboard')
+          }
+          else {
+            res.send('Wrong password!')
+          }
         }
         else {
           var newUser = new User({
@@ -29,7 +37,9 @@ router.post('/login',function(req,res,next) {
               res.send(err)
             }
             else {
-              res.send(savedUser)
+              req.session.name = foundUser.name;
+              req.session.phone = foundUser.phone;
+              res.redirect('/user/dashboard')
             }
           });
         }
@@ -37,5 +47,14 @@ router.post('/login',function(req,res,next) {
     });
   }
 });
+
+router.get('/dashboard',function (req, res, next){
+  if(req.session.phone){
+    res.sendFile(path.resolve(__dirname + '/../public/dashboard.html'));
+  }
+  else{
+    res.redirect('/');
+  }
+})
 
 module.exports = router;
