@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
+var User = require('../models/user');
 var router = express.Router();
 
 module.exports = router;
@@ -21,7 +21,7 @@ module.exports = router;
 
 /* GET users listing. */
 router.post('/login',function(req,res,next) {
-  if(!newUser.body){
+  if(!req.body){
     res.send("Please send some data");
   }
   issueRegister.findone({phone: req.body.phone}, function(err, found_user){
@@ -30,7 +30,7 @@ router.post('/login',function(req,res,next) {
     }
     else {
       if(found_user){
-        res.redirect('/users/dashboard');
+        res.send(found_user)
       }
       else {
         var newUser = new User({
@@ -40,13 +40,15 @@ router.post('/login',function(req,res,next) {
         });
         newUser.save();
         console.log(newUser);
-        // res.render('user-register');
+        res.send(newUser)
       }
     }
   });
 });
-router.post('/users/dashboard',function(req,res,next) {
-  res.render('dashboard')
-})
+
+// router.post('/users/dashboard',function(req,res,next) {
+//   res.render('dashboard')
+// })
+//
 router.get('/');
 module.exports = router;
