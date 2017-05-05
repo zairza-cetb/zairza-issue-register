@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var admin = require('../models/admin');
 var issue = require('../models/issueList');
@@ -35,6 +36,24 @@ router.post('/login',function(req,res,next) {
 //     }
 //   }
 
+router.post('/returnitem',function (req, res, next){
+  if(req.session.username == 'admin'){
+    if(req.body.phone){
+      return_issue update = new issue(
+        "$set", new issue()
+                .append("returned_by", req.body.returned_by)
+                .append("is_returned", true)
+                .append("returne_date", req.body.returne_date)
+                .append("return_verified_by", req.body.return_verified_by)
+      )
+    }
+  res.redirect('/logout');
+  }
+  else{
+    res.redirect('/')
+  }
+});
+
 router.post('/additem',function (req, res, next){
   if(req.session.username == 'admin'){
     var new_issue = new issue({
@@ -47,7 +66,8 @@ router.post('/additem',function (req, res, next){
     });
     new_issue.save();
     db.collection.insert(new_issue);
-  }
+    res.redirect('/dashboard');
+  }o
   else{
     res.redirect('/')
   }
@@ -55,4 +75,8 @@ router.post('/additem',function (req, res, next){
 
 router.get('/dashboard',function (req, res, next){
     res.sendFile(path.resolve(__dirname + '/../public/dashboard.html'));
+});
+
+router.get('/logout',function (req, res, next){
+    res.redirect('/');
 });
