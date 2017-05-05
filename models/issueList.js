@@ -2,14 +2,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var issueSchema = new Schema({
+  item: String,
   issued_by: String,
-  returned_by: {type: String,default: issued_by},
+  phone: String,
+  returned_by: String,
   quantity: Number,
   is_returned: {type: Boolean,default: false},
   issue_date: {type: Date,default: Date.now},
-  return_date: Date
-});
+  return_date: Date,
+  issue_verified_by: String,
+  return_verified_by: String
+},{ collection:'issuelist'});
 
-var User = mongoose.model('Admin', adminSchema);
+var User = mongoose.model('issueRegister', issueRegisterSchema);
 
-module.exports = Admin;
+module.exports = issueRegister;
