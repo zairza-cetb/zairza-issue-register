@@ -8,7 +8,6 @@ var expressLayouts = require('express-ejs-layouts');
 var session = require('express-session');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/issueRegister');

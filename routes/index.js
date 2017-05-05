@@ -43,7 +43,7 @@ router.post('/additem',function (req, res, next){
       phone: req.body.phone,
       quantity: req.body.quantity,
       issue_date: req.body.issue_date,
-      issue_verified_by: req.body.issue_verified_by;
+      issue_verified_by: req.body.issue_verified_by
     });
     new_issue.save();
     db.collection.insert(new_issue);
@@ -55,4 +55,4 @@ router.post('/additem',function (req, res, next){
 
 router.get('/dashboard',function (req, res, next){
     res.sendFile(path.resolve(__dirname + '/../public/dashboard.html'));
-  }
+});

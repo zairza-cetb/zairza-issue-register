@@ -14,6 +14,6 @@ var issueSchema = new Schema({
   return_verified_by: String
 },{ collection:'issuelist'});
 
-var User = mongoose.model('issueRegister', issueRegisterSchema);
+var issueRegister = mongoose.model('issueRegister', issueSchema);
 
 module.exports = issueRegister;
