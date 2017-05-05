@@ -1,89 +1,76 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <title>Zairza</title>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <!-- <link rel="stylesheet" href="bootstrap_files/css/bootstrap.min.css"> -->
-      <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
-   </head>
-   <body>
-      <div class="container-fluid" style="background-color:#e0e0e0">
-         <nav>
-            <div class="nav-wrapper" style="background-color:#0d47a1 blue darken-4">
-               <a class="brand-logo">Dashboard</a>
-            </div>
-         </nav>
-         <div class="row"  style="margin-left:25%;margin-top:3%">
-            <div class="col s12 m6">
-               <div class="card blue-grey darken-1">
-                  <div class="card-content white-text">
-                     <p>I am a very simple card.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="row" style="margin-left:25%;">
-            <div class="col s12 m6">
-               <div class="card blue-grey darken-1">
-                  <div class="card-content white-text">
-                     <p>I am a very simple card.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="row" style="margin-left:55%;margin-top:15%;padding-bottom:10%">
-            <div class="col s12 m6">
-               <a class="btn-floating btn-large waves-effect waves-light red" href="#add_items"><i class="material-icons">add</i></a>
-            </div>
-         </div>
-         <!-- Modal Structure -->
-         <div id="add_items" class="modal">
-           <div class="modal-content">
-             <h4>Add items</h4>
-             <form action='/' method='POST'>
-               <table style="width:40%">
-                 <tr>
-                   <td align="right">Items:-</td>
-                   <td align="left"><div class="input-field inline">
-                     <input id="items" type="text">
-                   </div>
-                 </td>
-               </tr>
-               <tr>
-                 <td align="right">Quantity:-</td>
-                 <td align="left"><div class="input-field inline">
-                   <input id="quantity" type="number">
-                 </div>
-               </td>
-             </tr>
-           </table>
-               <!-- Items:-
-               <div class="input-field inline">
-                 <input id="items" type="text">
-               </div>
-               <br>
-               Quantity:-
-               <div class="input-field inline">
-                 <input id="quantity" type="number">
-               </div> -->
-             </form>
-           </div>
-           <div class="modal-footer">
-             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-           </div>
-         </div>
+<head>
+  <meta charset="utf-8">
+  <title>Zairza</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- <link rel="stylesheet" href="bootstrap_files/css/bootstrap.min.css"> -->
+  <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+  <div class="container-fluid" style="background-color:#e0e0e0">
+    <nav>
+      <div class="nav-wrapper" style="background-color:#0d47a1 blue darken-4">
+        <a class="brand-logo">Dashboard</a>
       </div>
-   </body>
-   <!-- <script src="bootstrap_files/js/jquery.min.js"></script> -->
-   <!-- <script src="bootstrap_files/js/bootstrap.min.js"></script> -->
-   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-   <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
-   <script>
-    $(document).ready(function(){
-      $('#add_items').modal();
-     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    //  $('.modal-trigger').leanModal();
-   });
-   </script>
+    </nav>
+    <div id="populate_cards">
+      <div class="row"  style="margin-left:25%;margin-top:3%">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <p>I am a very simple card.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-left:55%;margin-top:15%;padding-bottom:10%">
+      <div class="col s12 m6">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="#add_items"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="add_items" class="modal">
+      <div class="modal-content">
+        <h4>Add items</h4>
+        <form action='/' method='POST'>
+          <table style="width:40%">
+            <tr>
+              <td align="right">Items:-</td>
+              <td align="left"><div class="input-field inline">
+                <input id="items" type="text">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="right">Quantity:-</td>
+            <td align="left"><div class="input-field inline">
+              <input id="quantity" type="number">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a id="submit_btn" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+  </div>
+</div>
+</div>
+</body>
+<!-- <script src="bootstrap_files/js/jquery.min.js"></script> -->
+<!-- <script src="bootstrap_files/js/bootstrap.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('#add_items').modal();
+});
+
+$( '#submit_btn' ).click(function() {
+  $("#populate_cards").append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><p>I am a very simple card.</p></div></div></div></div>');
+});
+
+</script>
 </html>
