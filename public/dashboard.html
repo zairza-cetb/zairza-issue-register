@@ -35,21 +35,43 @@
       <div class="modal-content">
         <h4>Add items</h4>
         <form action='/' method='POST'>
-          <table style="width:40%">
+          <table style="width:100%">
             <tr>
-              <td align="right">Items:-</td>
+              <td align="right">Issued by:-</td>
               <td align="left"><div class="input-field inline">
-                <input id="items" type="text">
+                <input id="issued_by" type="text">
               </div>
             </td>
-          </tr>
-          <tr>
-            <td align="right">Quantity:-</td>
+            <td align="right">Phone number:-</td>
             <td align="left"><div class="input-field inline">
-              <input id="quantity" type="number">
+              <input id="phone" type="text">
             </div>
           </td>
+          </tr>
+          <tr>
+            <td align="right">Items:-</td>
+            <td align="left"><div class="input-field inline">
+              <input id="item" type="number">
+            </div>
+          </td>
+          <td align="right">Quantity:-</td>
+          <td align="left"><div class="input-field inline">
+            <input id="quantity" type="number">
+          </div>
+        </td>
         </tr>
+        <tr>
+          <td align="right">Issue date:-</td>
+          <td align="left"><div class="input-field inline">
+            <input id="issue_date" type="number">
+          </div>
+        </td>
+        <td align="right">Issue verified by:-</td>
+        <td align="left"><div class="input-field inline">
+          <input id="issue_verified_by" type="number">
+        </div>
+      </td>
+      </tr>
       </table>
     </form>
   </div>
