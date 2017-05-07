@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 var session = require('express-session');
-
+var Admin = require('./models/admin');
 var index = require('./routes/index');
 
 var mongoose = require('mongoose')
@@ -40,6 +40,29 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+Admin.findOne({},function(err,admin){
+  if(err){
+    console.log(err);
+  }else{
+    console.log(admin);
+    if(!admin){
+      console.log("No admin account found. Creating one.");
+      var newadmin = new Admin({
+        admin : 'zairza',
+        password : 'pronoob17'
+      });
+      newadmin.save(function(err){
+        if(err){
+          console.log(err);
+        }else {
+          console.log("Admin account created");
+        }
+      })
+    }else {
+      console.log("Admin account already created");
+    }
+  }
+})
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

@@ -34,14 +34,18 @@ router.post('/login',function(req,res,next) {
     res.send("Please send some data");
   }
   else{
-    admin.findOne({'admin':req.body.admin,'password' : req.body.password},function(err,admin) {
+    admin.findOne({'admin':req.body.username, 'password' : req.body.password},function(err,admin) {
       if(err) {
         console.log(err);
         res.redirect('/logout');
       }else {
-        req.session.admin = "zairza";
-        req.session.password = "pronoob17";
-        res.redirect('/dashboard');
+        if(admin){
+          req.session.admin = "zairza";
+          res.redirect('/dashboard');
+        }
+        else{
+          res.redirect('/');
+        }
       }
     })
       // if(admin.findOne({'admin': req.body.admin, 'password': req.admin.password})){
@@ -112,7 +116,7 @@ router.get('/dashboard',isloggedin,function (req, res, next){
 });
 
 router.get('/logout',function (req, res, next){
-    req.session.username = null;
-    req.session.password = null;
+    req.body.username = null;
+    req.body.password = null;
     res.redirect('/');
 });
