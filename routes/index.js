@@ -29,7 +29,7 @@ router.get('/',function(req,res,next){
   }
 })
 
-router.post('/login',isloggedin,function(req,res,next) {
+router.post('/login',function(req,res,next) {
   if(!req.body){
     res.send("Please send some data");
   }
