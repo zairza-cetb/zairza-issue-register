@@ -9,11 +9,19 @@
 </head>
 <body>
   <div class="container-fluid" style="background-color:#e0e0e0">
-    <nav>
+    <!-- <nav>
       <div class="nav-wrapper" style="background-color:#0d47a1 blue darken-4">
         <a class="brand-logo">Dashboard</a>
       </div>
-    </nav>
+    </nav> -->
+    <nav>
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo">Dashboard</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
     <div id="populate_cards">
       <div class="row"  style="margin-left:25%;margin-top:3%">
         <div class="col s12 m6">
@@ -26,6 +34,9 @@
               <span>Issue Date :</span><br>
               <span>Issue Time :</span><br>
               <span>Issue Verified By :</span><br>
+            </div>
+            <div class="card-action">
+              <a style="margin-left:80%" href="#return_items">Return</a>
             </div>
           </div>
         </div>
@@ -40,7 +51,7 @@
     <form action="/additem" method="POST">
       <div id="add_items" class="modal">
         <div class="modal-content">
-          <h4>Add items</h4>
+          <h4>Issue items</h4>
           <table style="width:100%">
             <tr>
               <td align="right">Issued by:-</td>
@@ -80,15 +91,57 @@
 </tr>
 </table>
 </div>
-<div class="modal-footer">
+<!-- <div class="modal-footer">
   <input style="float: right" type="submit">
-</div>
+</div> -->
+<div class="modal-footer">
+      <a type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>
 </div>
 </form>
 </div>
-<div>
-  <button style="text-align=center" type="button"><a href="/logout">Logout</a></button>
+
+<!-- Modal Structure -->
+<form action="/returnitem" method="POST">
+  <div id="return_items" class="modal">
+    <div class="modal-content">
+      <h4>Return items</h4>
+      <table style="width:50%">
+        <tr>
+          <td align="right">Returned by:-</td>
+          <td align="left"><div class="input-field inline">
+            <input name="return_by" type="text">
+          </div>
+        </td>
+    </tr>
+    <tr>
+      <td align="right">Return date:-</td>
+      <td align="left"><div class="input-field inline">
+        <input name="return_date" type="date">
+      </div>
+    </td>
+</tr>
+<tr>
+  <td align="right">Return verified by:-</td>
+  <td align="left"><div class="input-field inline">
+    <input name="return_verified_by" type="text">
+  </div>
+</td>
+</tr>
+</table>
 </div>
+<!-- <div class="modal-footer">
+<input style="float: right" type="submit">
+</div> -->
+<div class="modal-footer">
+      <a type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Return</a>
+    </div>
+</div>
+</form>
+</div>
+<!-- <div>
+  <button style="text-align=center" type="button"><a href="/logout">Logout</a></button>
+</div> -->
 </body>
 <!-- <script src="bootstrap_files/js/jquery.min.js"></script> -->
 <!-- <script src="bootstrap_files/js/bootstrap.min.js"></script> -->
@@ -98,10 +151,13 @@
 $(document).ready(function(){
   $('#add_items').modal();
 });
-
-$( '#submit_btn' ).click(function() {
-  $("#populate_cards").append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><p>I am a very simple card.</p></div></div></div></div>');
+$(document).ready(function(){
+  $('#return_items').modal();
 });
+
+// $( '#submit_btn' ).click(function() {
+//   $("#populate_cards").append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><p>I am a very simple card.</p></div></div></div></div>');
+// });
 
 </script>
 </html>
