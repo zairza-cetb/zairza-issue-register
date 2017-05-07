@@ -80,7 +80,7 @@
     <tr>
       <td align="right">Issue date:-</td>
       <td align="left"><div class="input-field inline">
-        <input name="issue_date" type="date">
+        <input class="date" name="issue_date" type="date">
       </div>
     </td>
     <td align="right">Issue verified by:-</td>
@@ -117,7 +117,7 @@
     <tr>
       <td align="right">Return date:-</td>
       <td align="left"><div class="input-field inline">
-        <input name="return_date" type="date">
+        <input class="date" name="return_date" type="date">
       </div>
     </td>
 </tr>
@@ -145,6 +145,7 @@
 </body>
 <!-- <script src="bootstrap_files/js/jquery.min.js"></script> -->
 <!-- <script src="bootstrap_files/js/bootstrap.min.js"></script> -->
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 <script>
@@ -154,7 +155,9 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('#return_items').modal();
 });
-
+$(function() {
+         $( ".date" ).datepicker();
+    });
 // $( '#submit_btn' ).click(function() {
 //   $("#populate_cards").append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><p>I am a very simple card.</p></div></div></div></div>');
 // });
