@@ -9,11 +9,22 @@
 </head>
 <body>
   <div class="container-fluid" style="background-color:#e0e0e0">
-    <nav>
+    <!-- <nav>
       <div class="nav-wrapper" style="background-color:#0d47a1 blue darken-4">
         <a class="brand-logo">Dashboard</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="sass.html">Logout</a></li>
+     </ul>
       </div>
-    </nav>
+    </nav> -->
+    <nav>
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo">Dashboard</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
     <div id="populate_cards">
       <div class="row"  style="margin-left:25%;margin-top:3%">
         <div class="col s12 m6">
@@ -81,7 +92,7 @@
 </table>
 </div>
 <div class="modal-footer">
-  <input style="float: right" type="submit">
+  <input id="submit_btn" style="float: right" type="submit">
 </div>
 </div>
 </form>
@@ -99,8 +110,8 @@ $(document).ready(function(){
   $('#add_items').modal();
 });
 
-$( '#submit_btn' ).click(function() {
-  $("#populate_cards").append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><p>I am a very simple card.</p></div></div></div></div>');
+$('#submit_btn').click(function() {
+  $('#populate_cards').append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span>Item :</span><br><span>Quantity :</span><br><span>Issued By :</span><br><span>Phone Number :</span><br><span>Issue Date :</span><br><span>Issue Time :</span><br><span>Issue Verified By :</span><br></div></div></div></div>');
 });
 
 </script>
