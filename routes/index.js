@@ -9,7 +9,7 @@ module.exports = router;
 
 var isloggedin = function(req,res,next) {
   if(req.session) {
-    if(req.session.username == 'admin') {
+    if(req.session.admin == 'zairza') {
       next();
     } else {
       res.redirect('/');
@@ -34,15 +34,25 @@ router.post('/login',function(req,res,next) {
     res.send("Please send some data");
   }
   else{
-      if(req.body.username == "admin" && req.body.password == "pronoob17"){
-      req.session.username = "admin";
-      req.session.password = "pronoob17";
-      res.redirect('/dashboard');
-    }
-    else{
-      res.send("Please try again!");
-      res.redirect('/');
-    }
+    admin.findOne({'admin':req.body.admin,'password' : req.body.password},function(err,admin) {
+      if(err) {
+        console.log(err);
+        res.redirect('/logout');
+      }else {
+        req.session.admin = "zairza";
+        req.session.password = "pronoob17";
+        res.redirect('/dashboard');
+      }
+    })
+      // if(admin.findOne({'admin': req.body.admin, 'password': req.admin.password})){
+      // req.session.admin = "zairza";
+      // req.session.password = "pronoob17";
+      // res.redirect('/dashboard');
+      // }
+      // else{
+      //   res.send("Please try again!");
+      //   res.redirect('/');
+      // }
   }
 });
 //   else{
@@ -98,7 +108,7 @@ router.post('/additem',isloggedin,function (req, res, next){
 });
 
 router.get('/dashboard',isloggedin,function (req, res, next){
-    res.sendFile(path.resolve(__dirname + '/../public/dashboard.html'));
+    res.render('dashboard');
 });
 
 router.get('/logout',function (req, res, next){
