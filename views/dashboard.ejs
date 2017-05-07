@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Zairza</title>
+    <link rel="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- <link rel="stylesheet" href="bootstrap_files/css/bootstrap.min.css"> -->
   <link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css"  media="screen,projection"/>
@@ -23,26 +24,41 @@
     </div>
   </nav>
     <div id="populate_cards">
-      <div class="row"  style="margin-left:25%;margin-top:3%">
-        <div class="col s12 m6">
+      <div class="row"  style="width:90%;margin-left:5%;margin-top:3%">
+        <div class="col s12 m12">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span>Item :</span><br>
-              <span>Quantity :</span><br>
-              <span>Issued By :</span><br>
-              <span>Phone Number :</span><br>
-              <span>Issue Date :</span><br>
-              <span>Issue Time :</span><br>
-              <span>Issue Verified By :</span><br>
+              <table id="issue_table" style="width:100%">
+                <tr>
+                  <th>Sl.no.</th>
+                  <th>Item</th>
+                  <th>Quantity</th>
+                  <th>Issued by</th>
+                  <th>Phone no.</th>
+                  <th>Issue Date</th>
+                  <th>Issue Verified by</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>Sl.no.</td>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                  <td>Issued by</td>
+                  <td>Phone no.</td>
+                  <td>Issue Date</td>
+                  <td>Issue Verified by</td>
+                  <td><a class="waves-effect waves-light btn" href="#return_items">Return</a></td>
+                </tr>
+              </table>
             </div>
-            <div class="card-action">
+            <!-- <div class="card-action">
               <a style="margin-left:80%" href="#return_items">Return</a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="row" style="margin-left:55%;margin-top:15%;padding-bottom:10%">
+    <div class="row" style="margin-left:80%;margin-top:15%;padding-bottom:10%">
       <div class="col s12 m6">
         <a class="btn-floating btn-large waves-effect waves-light red" href="#add_items"><i class="material-icons">add</i></a>
       </div>
@@ -145,6 +161,7 @@
 </body>
 <!-- <script src="bootstrap_files/js/jquery.min.js"></script> -->
 <!-- <script src="bootstrap_files/js/bootstrap.min.js"></script> -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"</script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
@@ -157,6 +174,9 @@ $(document).ready(function(){
 });
 $(function() {
          $( ".date" ).datepicker();
+    });
+$(document).ready(function(){
+        $('#issue_table').DataTable();
     });
 // $( '#submit_btn' ).click(function() {
 //   $("#populate_cards").append('<div class="row" style="margin-left:25%;margin-top:3%"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><p>I am a very simple card.</p></div></div></div></div>');
