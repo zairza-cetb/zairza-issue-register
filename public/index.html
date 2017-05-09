@@ -8,8 +8,8 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   </head>
   <body>
-    <!--Navigation Bar-->
-    <div class="container-fluid" style="background-color:#aed581;padding-bottom:20%">
+    <!--Navigation Bar #aed581-->
+    <div class="container-fluid" style="background-color:#2BBBAD;padding-bottom:20%">
        <div class="row">
           <nav class="navbar navbar-inverse" style="background-color:">
              <div class="navbar-header">
@@ -17,16 +17,30 @@
              </div>
           </nav>
        </div>
-
+       <div class="row" style="margin-top:8%;margin-right:20%">
+         <form action='/login' method='POST'>
+          <div class="col col-lg-6 col-sm-offset-4">
+             <input type="text" id='first' name="username" class="form-control input-lg col-lg-4" placeholder="Username">
+          </div>
+        </div>
+        <div class="row text-center" style="margin-top:5%;margin-right:20%">
+          <div class="col col-lg-6 col-sm-offset-4">
+             <input type="password" id ='second' name="password" class="form-control input-lg col-lg-4" placeholder="Password">
+          </div>
+       </div>
+       <div class="row text-center"style="margin-top:10%;margin-right:7%">
+          <input type="submit" class="btn btn-warning btn-lg"></input>
+       </div>
+     </form>
        <!-- <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;"> -->
          <div class="row" style="background-color:#f5f5f5;margin-left:30%;width:40%;margin-top:8%">
            <form action='/login' method='POST' style=";width:45%;margin-left:30%;margin-bottom:10%">
              <div class="row" style="margin-top:15%;">
                <div class="col s12 m6" style="margin-top:5%">
                  <h4>Username:-</h4>
-                 <div class="input-field inline">
+                 <!-- <div class="input-field inline"> -->
                    <input name= "username" type="text" placeholder="name">
-                 </div>
+                 <!-- </div> -->
                </div>
              </div>
              <div class="row" style="margin-top:3%;padding-bottom:3%">
@@ -41,7 +55,9 @@
                <input type="submit" class="btn btn-warning btn-lg"></input>
              </div>
            </form>
+
          </div>
+
        <!-- </div> -->
        <!-- <div class="row" style="margin-left:44%;margin-bottom:50%">
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
