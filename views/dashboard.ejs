@@ -30,17 +30,50 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
+              <h5 class="modal-title"><h3>New Issue</h3></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Submit</button>
-              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+              <form action='/additem' method='POST'>
+                <table>
+                 <tr>
+                   <th style="float:right">Item: </th>
+                   <td><input type="text" name="item"></input></td>
+                   <th style="float:right">Quantity: </th>
+                   <td><input type="number" name="quantity"></input></td>
+                 </tr>
+                 <tr>
+                   <td><font color="#ffffff">""</font>
+                   </td>
+                 </tr>
+                 <tr>
+                   <th>Issued by:</th>
+                   <td><input type="text" name="issued_by"></input></td>
+                   <th style="float:right">Phone no.:</th>
+                   <td><input type="text" name="phone"></input></td>
+                 </tr>
+                 <tr>
+                   <td><font color="#ffffff">""</font>
+                   </td>
+                 </tr>
+                 <tr>
+                   <th style="float:right">Date:</th>
+                   <td><input type="date" name="issue_date"></input></td>
+                   <th style="float:right">Verified by:</th>
+                   <td><input type="text" name="issue_verified_by"></input></td>
+                 </tr>
+                 <tr>
+                   <td><font color="#ffffff">""</font>
+                   </td>
+                 </tr>
+               </table>
+               <div class="modal-footer">
+                 <input type="submit" value="Add Item" class="btn btn-primary"></input>
+                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+               </div>
+          </form>
             </div>
           </div>
         </div>
