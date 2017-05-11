@@ -21,15 +21,18 @@ var isloggedin = function(req,res,next) {
 }
 
 router.get('/',function(req,res,next){
-  if(req.session.username == 'admin'){
+  console.log(req.session);
+  console.log("Aloo noob");
+  if(req.session.admin == 'zairza'){
     res.redirect('/dashboard')
   }
   else{
-    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+    res.sendFile(path.resolve(__dirname + '/../public/login.html'));
   }
 })
 
 router.post('/login',function(req,res,next) {
+  console.log("Blah blah blah");
   if(!req.body){
     res.send("Please send some data");
   }
@@ -103,6 +106,8 @@ router.post('/additem',isloggedin,function (req, res, next){
 });
 
 router.get('/dashboard',isloggedin,function (req, res, next){
+  console.log(req.session);
+
     issue.find({},function(err, foundIssues){
       if(err){
         console.log(err);
@@ -116,7 +121,8 @@ router.get('/dashboard',isloggedin,function (req, res, next){
 });
 
 router.get('/logout',function (req, res, next){
-    req.body.username = null;
-    req.body.password = null;
+    // req.body.username = null;
+    // req.body.password = null;
+    req.session.admin = null;
     res.redirect('/');
 });
