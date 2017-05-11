@@ -44,17 +44,18 @@ Admin.findOne({},function(err,admin){
   if(err){
     console.log(err);
   }else{
-    console.log(admin);
+    // console.log(admin);
     if(!admin){
       console.log("No admin account found. Creating one.");
       var newadmin = new Admin({
         admin : 'zairza',
-        password : 'pronoob17'
+        password : '123'
       });
       newadmin.save(function(err){
         if(err){
           console.log(err);
         }else {
+          console.log(newadmin);
           console.log("Admin account created");
         }
       })

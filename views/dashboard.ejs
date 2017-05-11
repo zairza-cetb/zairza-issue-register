@@ -30,27 +30,20 @@
              <th>Phone no.</th>
              <th>Issue date</th>
              <th>Issue verified by</th>
-             <th></th>
            </thead>
            <tbody>
-             <tr>
-             <td>Projector</td>
-             <td>1</td>
-             <td>Alice</td>
-             <td>9999999999</td>
-             <td>2/9/17</td>
-             <td>Alice</td>
-             <td><button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#returnIssue">Return</button></td>
-           </tr>
-           <tr>
-           <td>Wires</td>
-           <td>5</td>
-           <td>Sohini</td>
-           <td>9999000999</td>
-           <td>8/9/17</td>
-           <td>Alice</td>
-           <td><button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#returnIssue">Return</button></td>
-         </tr>
+             <%for(var i=0;i<issueList.length;i++){%>
+               <tr>
+                 <td><%= issueList[i].item%></td>
+                 <td><%= issueList[i].quantity%></td>
+                 <td><%= issueList[i].issued_by%></td>
+                 <td><%= issueList[i].phone%></td>
+                 <td><%= issueList[i].issue_date%></td>
+                 <td><%= issueList[i].issue_verified_by%></td>
+                 <td><button type="button" class="return-button btn btn-danger btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
+               </tr>
+               <% } %>
+             </tr>
            </tbody>
          </table>
        </div>
@@ -142,6 +135,10 @@
                    <td><input type="date" name="return_date"></input></td>
                  </tr>
                  <tr>
+                 <tr>
+                   <th style="float:right"></th>
+                   <td><input type="hidden" name="_id" value="" id="hidden-id-field"></input></td>
+                 </tr>
                    <td><font color="#ffffff">""</font>
                    </td>
                  </tr>
@@ -189,8 +186,12 @@
     //   });
     // });
     $(document).ready(function() {
-    $('#issue-list').DataTable();
-  } );
-    $('#addIssue').modal('show')
+      $('#issue-list').DataTable();
+    });
+    $(document).on("click", ".return-button", function () {
+     var returnId = $(this).data('id');
+     console.log(returnId);
+     $("#hidden-id-field").val( returnId );
+    });
   </script>
 </html>
