@@ -109,8 +109,18 @@ router.get('/dashboard',isloggedin,function (req, res, next){
         res.send(err);
       }
       else{
+        var retunedIssues = [];
+        var currentIssues = [];
+        for(var i=0;i<foundIssues.length;i++){
+          if(foundIssues.is_returned == true){
+            returnedIssues.push(foundIssues);
+          }
+          else{
+            currentIssues.push(foundIssues);
+          }
+        }
         // console.log(foundIssues);
-        res.render('dashboard',{issueList: foundIssues});
+        res.render('dashboard',{retuned_issueList: foundIssues, current_issueList: currentIssues});
       }
   });
 });
