@@ -5,7 +5,7 @@
     <title>Zairza Issue Register | Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   </head>
   <body>
     <!--Navigation Bar-->
@@ -21,6 +21,7 @@
           </nav>
        </div>
        <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;">
+         <!-- <table id="issue-list" class="display" width="100%"></table> -->
          <table id="issue-list" class="display" width="100%">
            <thead>
              <th>Item</th>
@@ -29,7 +30,6 @@
              <th>Phone no.</th>
              <th>Issue date</th>
              <th>Issue verified by</th>
-             <th></th>
            </thead>
            <tbody>
              <%for(var i=0;i<issueList.length;i++){%>
@@ -57,8 +57,6 @@
        <div class="row" style="margin-left:44%;margin-bottom:50%">
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
       </div>
-
-      <!-- Add New Issue modal -->
       <div id="addIssue" class="modal fade">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -104,14 +102,13 @@
                </table>
                <div class="modal-footer">
                  <input type="submit" value="Add Item" class="btn btn-primary"></input>
+                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                </div>
           </form>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Return issue modal -->
       <div id="returnIssue" class="modal fade">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -159,6 +156,7 @@
                </table>
                <div class="modal-footer">
                  <input type="submit" value="Return" class="btn btn-primary"></input>
+                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                </div>
           </form>
             </div>
@@ -194,17 +192,20 @@
     //       ]
     //   });
     // });
-    // $(document).ready(function() {
-    //   $('#issue-list').DataTable();
-    // });
+    $(document).ready(function() {
+      $('#issue-list').DataTable();
+    });
     $(document).on("click", ".return-button", function () {
      var returnId = $(this).data('id');
      console.log(returnId);
      $("#hidden-id-field").val( returnId );
     });
+<<<<<<< HEAD
     $('#issue-list').DataTable();
     $('#not-returned-issue-list').DataTable();
     $('#addIssue').modal('show')
     $('#returnIssue').modal('show')
+=======
+>>>>>>> b5532de98e06088c81b4c754d3fbc711a996ca00
   </script>
 </html>
