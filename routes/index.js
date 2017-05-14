@@ -39,7 +39,8 @@ router.post('/login',function(req,res,next) {
   else{
     admin.findOne({'admin':req.body.username,'password':req.body.password},function(err,admin) {
       if(err) {
-        console.log(err);
+        // console.log(err);
+        console.log("headed to logout");
         res.redirect('/logout');
       }else {
         if(admin){
@@ -106,33 +107,42 @@ router.post('/additem',isloggedin,function (req, res, next){
 });
 
 router.get('/dashboard',isloggedin,function (req, res, next){
-  console.log(req.session);
-
-    issue.find({},function(err, foundIssues){
-      if(err){
-        console.log(err);
-        res.send(err);
-      }
-      else{
-        var retunedIssues = [];
-        var currentIssues = [];
-        for(var i=0;i<foundIssues.length;i++){
-          if(foundIssues.is_returned == true){
-            returnedIssues.push(foundIssues);
-          }
-          else{
-            currentIssues.push(foundIssues);
-          }
+  // console.log(req.session);
+  issue.find({},function(err, foundIssues){
+    if(err){
+      console.log('1');
+      console.log(err);
+      res.send(err);
+    }
+    else{
+      console.log('2');
+      var returnedIssues = [];
+      var currentIssues = [];
+      for(var i=0;i<foundIssues.length;i++){
+        console.log('3');
+        if(foundIssues[i].is_returned == true){
+          console.log('4');
+          returnedIssues.push(foundIssues[i]);
+          console.log('5');
         }
-        // console.log(foundIssues);
-        res.render('dashboard',{retuned_issueList: foundIssues, current_issueList: currentIssues});
+        else{
+          console.log('6');
+          currentIssues.push(foundIssues[i]);
+          console.log('7');
+        }
       }
+      console.log('8');
+      res.render('dashboard',{foundIssueList: {retuned_issueList: returnedIssues,
+                                               current_issueList: currentIssues}});
+      console.log('9');
+    }
   });
 });
 
 router.get('/logout',function (req, res, next){
     // req.body.username = null;
     // req.body.password = null;
+    console.log("logging out");
     req.session.admin = null;
     res.redirect('/');
 });

@@ -21,7 +21,6 @@
           </nav>
        </div>
        <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;">
-         <!-- <table id="issue-list" class="display" width="100%"></table> -->
          <table id="issue-list" class="display" width="100%">
            <thead>
              <th>Item</th>
@@ -32,21 +31,37 @@
              <th>Issue verified by</th>
            </thead>
            <tbody>
-             <%for(var i=0;i<issueList.length;i++){%>
+             <%for(var i=0; i<foundIssueList.returnedIssueList.length; i++){%>
                <tr>
-                 <td><%= issueList[i].item%></td>
-                 <td><%= issueList[i].quantity%></td>
-                 <td><%= issueList[i].issued_by%></td>
-                 <td><%= issueList[i].phone%></td>
-                 <td><%= issueList[i].issue_date%></td>
-                 <td><%= issueList[i].issue_verified_by%></td>
-                 <td><button type="button" class="return-button btn btn-danger btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
+                 <td><%= foundIssueList.returnedIssueList[i].item%></td>
+                 <td><%= foundIssueList.returnedIssueList[i].quantity%></td>
+                 <td><%= foundIssueList.returnedIssueList[i].issued_by%></td>
+                 <td><%= foundIssueList.returnedIssueList[i].phone%></td>
+                 <td><%= foundIssueList.returnedIssueList[i].issue_date%></td>
+                 <td><%= foundIssueList.returnedIssueList[i].issue_verified_by%></td>
+               </tr>
+               <% } %>
+             </tr>
+           </tbody>
+           <br>
+           <tbody>
+             <%for(var j=0; j<foundIssueList.currentIssueList.length; j++){%>
+               <tr>
+                 <td><%= foundIssueList.currentIssueList[j].item%></td>
+                 <td><%= foundIssueList.currentIssueList[j].quantity%></td>
+                 <td><%= foundIssueList.currentIssueList[j].issued_by%></td>
+                 <td><%= foundIssueList.currentIssueList[j].phone%></td>
+                 <td><%= foundIssueList.currentIssueList[j].issue_date%></td>
+                 <td><%= foundIssueList.currentIssueList[j].issue_verified_by%></td>
+                 <td><button type="button" class="return-button btn btn-danger btn-lg" data-toggle="modal" data-id="<%= foundIssueList.currentIssueList[j]._id %>" data-target="#returnIssue">Return</button></td>
                </tr>
                <% } %>
              </tr>
            </tbody>
          </table>
+         <br>
        </div>
+
        <div class="row" style="margin-left:44%;margin-bottom:50%">
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
       </div>
@@ -189,7 +204,7 @@
       $('#issue-list').DataTable();
     });
     $(document).on("click", ".return-button", function () {
-     var returnId = $(this).data('id');
+     var returnId = val($(this).data('id'));
      console.log(returnId);
      $("#hidden-id-field").val( returnId );
     });
