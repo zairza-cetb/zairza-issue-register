@@ -36,7 +36,8 @@ router.post('/login',function(req,res,next) {
   else{
     admin.findOne({'admin':req.body.username,'password':req.body.password},function(err,admin) {
       if(err) {
-        console.log(err);
+        // console.log(err);
+        console.log("headed to logout");
         res.redirect('/logout');
       }else {
         if(admin){
@@ -103,6 +104,21 @@ router.post('/additem',isloggedin,function (req, res, next){
 });
 
 router.get('/dashboard',isloggedin,function (req, res, next){
+  // console.log(req.session);
+  issue.find({},function(err, foundIssues){
+    if(err){
+      console.log(err);
+      res.send(err);
+    }
+    else{
+      var returnedIssues = [];
+      var currentIssues = [];
+      for(var i=0;i<foundIssues.length;i++){
+        if(foundIssues[i].is_returned == true){
+          returnedIssues.push(foundIssues[i]);
+        }
+        else{
+          currentIssues.push(foundIssues[i]);
   console.log(req.session);
     issue.find({},function(err, foundIssues){
       if(err){
@@ -120,15 +136,17 @@ router.get('/dashboard',isloggedin,function (req, res, next){
             currentIssues.push(foundIssues);
           }
         }
-        // console.log(foundIssues);
-        res.render('dashboard',{retuned_issueList: foundIssues, current_issueList: currentIssues});
       }
+      res.render('dashboard',{foundIssueList: {retuned_issueList: returnedIssues,
+                                               current_issueList: currentIssues}});
+    }
   });
 });
 
 router.get('/logout',function (req, res, next){
     // req.body.username = null;
     // req.body.password = null;
+    console.log("logging out");
     req.session.admin = null;
     res.redirect('/');
 });
