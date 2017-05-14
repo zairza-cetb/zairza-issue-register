@@ -31,7 +31,18 @@
              <th>Issue verified by</th>
            </thead>
            <tbody>
+<<<<<<< HEAD
              <%for(var i=0; i<foundIssueList.returnedIssueList.length; i++){%>
+=======
+             <%for(var i=0;i<issueList.length;i++){%>
+               <%for(var j=0;j<issueList[i].issue_date.length;j++){%>
+                 var yup = "uggjjgg";
+                  <% if(issueList[i].issue_date.charAt(j)=='G'){ %>
+                     <%=yup%>
+                    <% } %>
+               <% } %>
+               <!-- <%= issueList[i].issue_date%> -->
+>>>>>>> 87fb066f281b7da05872d16919bfbf6272ae5678
                <tr>
                  <td><%= foundIssueList.returnedIssueList[i].item%></td>
                  <td><%= foundIssueList.returnedIssueList[i].quantity%></td>
@@ -208,5 +219,12 @@
      console.log(returnId);
      $("#hidden-id-field").val( returnId );
     });
+<<<<<<< HEAD
+    $('#issue-list').DataTable();
+    $('#not-returned-issue-list').DataTable();
+    $('#addIssue').modal('show')
+    $('#returnIssue').modal('show')
+=======
+>>>>>>> b5532de98e06088c81b4c754d3fbc711a996ca00
   </script>
 </html>

@@ -21,8 +21,6 @@ var isloggedin = function(req,res,next) {
 }
 
 router.get('/',function(req,res,next){
-  console.log(req.session);
-  console.log("Aloo noob");
   if(req.session.admin == 'zairza'){
     res.redirect('/dashboard')
   }
@@ -32,7 +30,6 @@ router.get('/',function(req,res,next){
 })
 
 router.post('/login',function(req,res,next) {
-  console.log("Blah blah blah");
   if(!req.body){
     res.send("Please send some data");
   }
@@ -110,31 +107,38 @@ router.get('/dashboard',isloggedin,function (req, res, next){
   // console.log(req.session);
   issue.find({},function(err, foundIssues){
     if(err){
-      console.log('1');
       console.log(err);
       res.send(err);
     }
     else{
-      console.log('2');
       var returnedIssues = [];
       var currentIssues = [];
       for(var i=0;i<foundIssues.length;i++){
-        console.log('3');
         if(foundIssues[i].is_returned == true){
-          console.log('4');
           returnedIssues.push(foundIssues[i]);
-          console.log('5');
         }
         else{
-          console.log('6');
           currentIssues.push(foundIssues[i]);
-          console.log('7');
+  console.log(req.session);
+    issue.find({},function(err, foundIssues){
+      if(err){
+        console.log(err);
+        res.send(err);
+      }
+      else{
+        var retunedIssues = [];
+        var currentIssues = [];
+        for(var i=0;i<foundIssues.length;i++){
+          if(foundIssues.is_returned == true){
+            returnedIssues.push(foundIssues);
+          }
+          else{
+            currentIssues.push(foundIssues);
+          }
         }
       }
-      console.log('8');
       res.render('dashboard',{foundIssueList: {retuned_issueList: returnedIssues,
                                                current_issueList: currentIssues}});
-      console.log('9');
     }
   });
 });
