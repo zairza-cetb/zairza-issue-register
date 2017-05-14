@@ -45,14 +45,14 @@
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
                  <td><button type="button" class="return-button btn btn-success btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
-                 <td><button type="button" class="return-button btn btn-primary btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Edit</button></td>
+                 <td><button onclick="editme('<%=issueList[i].item%>',<%=issueList[i].quantity%>,'<%=issueList[i].issued_by%>',<%=issueList[i].phone%>,'<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>')" type="button" class="return-button btn btn-primary btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
              </tr>
            </tbody>
          </table>
        </div>
-       <div class="row" style="margin-left:44%;margin-bottom:6%">
+       <div class="row text-center" style="margin-bottom:6%">
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
       </div>
 
@@ -103,9 +103,9 @@
                 <table>
                  <tr>
                    <th style="float:right">Item: </th>
-                   <td><input type="text" name="item"></input></td>
+                   <td><input type="text" name="item"></td>
                    <th style="float:right">Quantity: </th>
-                   <td><input type="number" name="quantity"></input></td>
+                   <td><input type="number" name="quantity"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -113,9 +113,9 @@
                  </tr>
                  <tr>
                    <th>Issued by:</th>
-                   <td><input type="text" name="issued_by"></input></td>
+                   <td><input type="text" name="issued_by"></td>
                    <th style="float:right">Phone no.:</th>
-                   <td><input type="text" name="phone"></input></td>
+                   <td><input type="text" name="phone"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -123,9 +123,9 @@
                  </tr>
                  <tr>
                    <th style="float:right">Date:</th>
-                   <td><input type="date" name="issue_date"></input></td>
+                   <td><input type="date" name="issue_date"></td>
                    <th style="float:right">Verified by:</th>
-                   <td><input type="text" name="issue_verified_by"></input></td>
+                   <td><input type="text" name="issue_verified_by"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -133,7 +133,60 @@
                  </tr>
                </table>
                <div class="modal-footer">
-                 <input type="submit" value="Add Item" class="btn btn-primary"></input>
+                 <input type="submit" value="Add Item" class="btn btn-primary">
+               </div>
+          </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Issue modal -->
+      <div id="editIssue" class="modal fade">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><h3>Edit Issue</h3></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action='/edititem' method='POST'>
+                <table>
+                 <tr>
+                   <th style="float:right">Item: </th>
+                   <td><input id="item" type="text" name="item" value="issueList[i].item"></td>
+                   <th style="float:right">Quantity: </th>
+                   <td><input id="quantity" type="number" name="quantity"></td>
+                 </tr>
+                 <tr>
+                   <td><font color="#ffffff">""</font>
+                   </td>
+                 </tr>
+                 <tr>
+                   <th>Issued by:</th>
+                   <td><input id="issued_by" type="text" name="issued_by"></td>
+                   <th style="float:right">Phone no.:</th>
+                   <td><input id="phone" type="text" name="phone"></td>
+                 </tr>
+                 <tr>
+                   <td><font color="#ffffff">""</font>
+                   </td>
+                 </tr>
+                 <tr>
+                   <th style="float:right">Date:</th>
+                   <td><input id="issue_date" type="date" name="issue_date"></td>
+                   <th style="float:right">Verified by:</th>
+                   <td><input id="issue_verified_by" type="text" name="issue_verified_by"></td>
+                 </tr>
+                 <tr>
+                   <td><font color="#ffffff">""</font>
+                   </td>
+                 </tr>
+               </table>
+               <div class="modal-footer">
+                 <input type="submit" value="Submit" class="btn btn-primary">
                </div>
           </form>
             </div>
@@ -156,7 +209,7 @@
                 <table>
                  <tr>
                    <th style="float:right">Returned by: </th>
-                   <td><input type="text" name="returned_by"></input></td>
+                   <td><input type="text" name="returned_by"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -164,7 +217,7 @@
                  </tr>
                  <tr>
                    <th>Verified by:</th>
-                   <td><input type="text" name="return_verified_by"></input></td>
+                   <td><input type="text" name="return_verified_by"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -172,12 +225,12 @@
                  </tr>
                  <tr>
                    <th style="float:right">Date: </th>
-                   <td><input type="date" name="return_date"></input></td>
+                   <td><input type="date" name="return_date"></td>
                  </tr>
                  <tr>
                  <tr>
                    <th style="float:right"></th>
-                   <td><input type="hidden" name="_id" value="" id="hidden-id-field"></input></td>
+                   <td><input type="hidden" name="_id" value="" id="hidden-id-field"></td>
                  </tr>
                    <td><font color="#ffffff">""</font>
                    </td>
@@ -188,7 +241,7 @@
                  </tr>
                </table>
                <div class="modal-footer">
-                 <input type="submit" value="Return" class="btn btn-primary"></input>
+                 <input type="submit" value="Return" class="btn btn-primary">
                </div>
           </form>
             </div>
@@ -211,5 +264,15 @@
     $('#issue-list').DataTable();
     $('#addIssue').modal('show')
     $('#returnIssue').modal('show')
+    $('#editIssue').modal('show')
+
+    function editme(item,quantity,issued_by,phone,issue_date,issue_verified_by) {
+      document.getElementById("item").value = item;
+      document.getElementById("quantity").value = quantity;
+      document.getElementById("issued_by").value = issued_by;
+      document.getElementById("phone").value = phone;
+      document.getElementById("issue_date").value = issue_date;
+      document.getElementById("issue_verified_by").value = issue_verified_by;
+}
   </script>
 </html>
