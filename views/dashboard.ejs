@@ -20,8 +20,11 @@
              </div>
           </nav>
        </div>
+       <div class="row text-center">
+         <h3><b><u>DUE ISSUE LIST</u></b></h3>
+       </div>
        <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;">
-         <table id="issue-list" class="display" width="100%">
+         <table id="due-issue-list" class="display" width="100%">
            <thead>
              <th>Item</th>
              <th>Quantity</th>
@@ -29,6 +32,7 @@
              <th>Phone no.</th>
              <th>Issue date</th>
              <th>Issue verified by</th>
+             <th></th>
              <th></th>
            </thead>
            <tbody>
@@ -40,15 +44,48 @@
                  <td><%= issueList[i].phone%></td>
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
-                 <td><button type="button" class="return-button btn btn-danger btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
+                 <td><button type="button" class="return-button btn btn-success btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
+                 <td><button type="button" class="return-button btn btn-primary btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Edit</button></td>
                </tr>
                <% } %>
              </tr>
            </tbody>
          </table>
        </div>
-       <div class="row" style="margin-left:44%;margin-bottom:50%">
+       <div class="row" style="margin-left:44%;margin-bottom:6%">
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
+      </div>
+
+      <!-- Issues returned -->
+      <div class="row text-center">
+        <h3><b><u>ISSUE LIST</u></b></h3>
+      </div>
+      <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;">
+        <table id="issue-list" class="display" width="100%">
+          <thead>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Issued by</th>
+            <th>Phone no.</th>
+            <th>Issue date</th>
+            <th>Issue verified by</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <%for(var i=0;i<issueList.length;i++){%>
+              <tr>
+                <td><%= issueList[i].item%></td>
+                <td><%= issueList[i].quantity%></td>
+                <td><%= issueList[i].issued_by%></td>
+                <td><%= issueList[i].phone%></td>
+                <td><%= issueList[i].issue_date%></td>
+                <td><%= issueList[i].issue_verified_by%></td>
+                <td><button type="button" class="return-button btn btn-danger btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Delete</button></td>
+              </tr>
+              <% } %>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- Add New Issue modal -->
@@ -165,36 +202,12 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <script>
-    // var dataSet = [
-    //   [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800","" ],
-    //   [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750","" ],
-    //   [ "Prescott Bartlett", "Technical Author", "London", "3606", "2011/05/07", "$145,000","" ],
-    //   [ "Gavin Cortez", "Team Leader", "San Francisco", "2860", "2008/10/26", "$235,500","" ],
-    //   [ "Martena Mccray", "Post-Sales support", "Edinburgh", "8240", "2011/03/09", "$324,050","" ],
-    //   [ "Unity Butler", "Marketing Designer", "San Francisco", "5384", "2009/12/09", "$85,675", "" ]
-    // ];
-    // $(document).ready(function() {
-    //   $('#issue-list').DataTable( {
-    //       data: dataSet,
-    //       columns: [
-    //           { title: "Item" },
-    //           { title: "Quantity" },
-    //           { title: "Issued by" },
-    //           { title: "Phone no." },
-    //           { title: "Issue date" },
-    //           { title: "Issue verified by" },
-    //           { title: "" }
-    //       ]
-    //   });
-    // });
-    // $(document).ready(function() {
-    //   $('#issue-list').DataTable();
-    // });
     $(document).on("click", ".return-button", function () {
      var returnId = $(this).data('id');
      console.log(returnId);
      $("#hidden-id-field").val( returnId );
     });
+    $('#due-issue-list').DataTable();
     $('#issue-list').DataTable();
     $('#addIssue').modal('show')
     $('#returnIssue').modal('show')
