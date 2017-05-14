@@ -33,6 +33,13 @@
            </thead>
            <tbody>
              <%for(var i=0;i<issueList.length;i++){%>
+               <%for(var j=0;j<issueList[i].issue_date.length;j++){%>
+                 var yup = "uggjjgg";
+                  <% if(issueList[i].issue_date.charAt(j)=='G'){ %>
+                     <%=yup%>
+                    <% } %>
+               <% } %>
+               <!-- <%= issueList[i].issue_date%> -->
                <tr>
                  <td><%= issueList[i].item%></td>
                  <td><%= issueList[i].quantity%></td>
@@ -196,6 +203,7 @@
      $("#hidden-id-field").val( returnId );
     });
     $('#issue-list').DataTable();
+    $('#not-returned-issue-list').DataTable();
     $('#addIssue').modal('show')
     $('#returnIssue').modal('show')
   </script>

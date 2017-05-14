@@ -21,8 +21,6 @@ var isloggedin = function(req,res,next) {
 }
 
 router.get('/',function(req,res,next){
-  console.log(req.session);
-  console.log("Aloo noob");
   if(req.session.admin == 'zairza'){
     res.redirect('/dashboard')
   }
@@ -32,7 +30,6 @@ router.get('/',function(req,res,next){
 })
 
 router.post('/login',function(req,res,next) {
-  console.log("Blah blah blah");
   if(!req.body){
     res.send("Please send some data");
   }
@@ -107,7 +104,6 @@ router.post('/additem',isloggedin,function (req, res, next){
 
 router.get('/dashboard',isloggedin,function (req, res, next){
   console.log(req.session);
-
     issue.find({},function(err, foundIssues){
       if(err){
         console.log(err);
