@@ -271,8 +271,15 @@
       document.getElementById("quantity").value = quantity;
       document.getElementById("issued_by").value = issued_by;
       document.getElementById("phone").value = phone;
-      document.getElementById("issue_date").value = issue_date;
+      var date = new Date(issue_date);
+      var converted_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' +  date.getDate());
+      console.log(converted_date);
+      // console.log(converted_date);
+      var iso = new Date('2017-5-17').toISOString();
+      console.log("iso= "+iso);
+      document.getElementById("issue_date").value = iso;
       document.getElementById("issue_verified_by").value = issue_verified_by;
-}
+      // document.getElementById("issue_date").value = issue_date;
+    }
   </script>
 </html>
