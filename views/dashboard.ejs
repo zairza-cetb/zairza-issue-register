@@ -44,8 +44,8 @@
                  <td><%= issueList[i].phone%></td>
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
-                 <td><button type="button" class="return-button btn btn-success btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
-                 <td><button onclick="editme('<%=issueList[i].item%>',<%=issueList[i].quantity%>,'<%=issueList[i].issued_by%>',<%=issueList[i].phone%>,'<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>')" type="button" class="return-button btn btn-primary btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
+                 <td><button type="button" class="return-button btn btn-success" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
+                 <td><button onclick="editme('<%=issueList[i].item%>',<%=issueList[i].quantity%>,'<%=issueList[i].issued_by%>',<%=issueList[i].phone%>,'<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>')" type="button" class="return-button btn btn-primary" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
              </tr>
@@ -80,7 +80,7 @@
                 <td><%= issueList[i].phone%></td>
                 <td><%= issueList[i].issue_date%></td>
                 <td><%= issueList[i].issue_verified_by%></td>
-                <td><button type="button" class="return-button btn btn-danger btn-lg" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Delete</button></td>
+                <td><button type="button" class="return-button btn btn-danger" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Delete</button></td>
               </tr>
               <% } %>
             </tr>
