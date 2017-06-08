@@ -100,7 +100,7 @@
             </div>
             <div class="modal-body">
               <form action='/additem' method='POST'>
-                <table>
+                <table width="100%">
                  <tr>
                    <th style="float:right">Item: </th>
                    <td><input type="text" name="item"></td>
@@ -153,7 +153,7 @@
             </div>
             <div class="modal-body">
               <form action='/edititem' method='POST'>
-                <table>
+                <table width="100%">
                  <tr>
                    <th style="float:right">Item: </th>
                    <td><input id="item" type="text" name="item" value="issueList[i].item"></td>
@@ -206,17 +206,11 @@
             </div>
             <div class="modal-body">
               <form action='/returnitem' method='POST'>
-                <table>
+                <table width="100%">
                  <tr>
                    <th style="float:right">Returned by: </th>
                    <td><input type="text" name="returned_by"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <th>Verified by:</th>
+                   <th style="float:right">Verified by:</th>
                    <td><input type="text" name="return_verified_by"></td>
                  </tr>
                  <tr>
