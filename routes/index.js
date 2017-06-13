@@ -48,31 +48,8 @@ router.post('/login',function(req,res,next) {
         }
       }
     })
-      // if(admin.findOne({'admin': req.body.admin, 'password': req.admin.password})){
-      // req.session.admin = "zairza";
-      // req.session.password = "pronoob17";
-      // res.redirect('/dashboard');
-      // }
-      // else{
-      //   res.send("Please try again!");
-      //   res.redirect('/');
-      // }
   }
 });
-//   else{
-//     if(err){
-//       res.send(err);
-//     }
-//     else {
-//       if(req.body.password == 'pronoob17' && req.body.username == 'admin'){
-//         res.redirect('/dashboard')
-//       }
-//       else {
-//         res.send('Please try again!')
-//         res.redirect('/login');
-//       }
-//     }
-//   }
 
 router.post('/returnitem',isloggedin,function (req, res, next){
   issue.findOneAndUpdate({_id: req.body._id}, {$set:{returned_by: req.body.returned_by, return_verified_by: req.body.return_verified_by, return_date: req.body.return_date, is_returned: true}}, {new: true}, function(err, doc){
@@ -111,15 +88,12 @@ router.get('/dashboard',isloggedin,function (req, res, next){
         res.send(err);
       }
       else{
-        // console.log(foundIssues);
         res.render('dashboard',{issueList: foundIssues});
       }
   });
 });
 
 router.get('/logout',function (req, res, next){
-    // req.body.username = null;
-    // req.body.password = null;
     req.session.admin = null;
     res.redirect('/');
 });
