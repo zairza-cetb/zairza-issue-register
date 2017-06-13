@@ -29,6 +29,25 @@ router.get('/',function(req,res,next){
   }
 })
 
+router.get('/dashboard',isloggedin,function (req, res, next){
+    issue.find({is_returned : false},function(err, due_issues){
+      if(err){
+        console.log(err);
+        res.send(err);
+      }
+      else{
+        issue.find({is_returned : true},function(err, returned_issues){
+          if(err){
+            console.log(err);
+          }
+          else{
+            res.render('dashboard',{issueList : due_issues, returnissues : returned_issues});
+          }
+      });
+    }
+  });
+});
+
 router.post('/login',function(req,res,next) {
   if(!req.body){
     res.send("Please send some data");
@@ -60,6 +79,25 @@ router.post('/returnitem',isloggedin,function (req, res, next){
   res.redirect('/dashboard');
 });
 
+router.post('/additem',isloggedin,function (req, res, next){
+  var new_issue = new issue({
+    item: req.body.item,
+    issued_by: req.body.issued_by,
+    phone: req.body.phone,
+    quantity: req.body.quantity,
+    issue_date: req.body.issue_date,
+    issue_verified_by: req.body.issue_verified_by
+  });
+  new_issue.save(function(err){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.redirect('/dashboard');
+    }
+  });
+});
+
 router.post('/edititem', isloggedin, function(req,res,next){
   issue.findOne({_id : req.body.edit_id},function(err,id){
     if(err){
@@ -83,39 +121,6 @@ router.post('/edititem', isloggedin, function(req,res,next){
         });
       }
     }
-  });
-});
-
-router.post('/additem',isloggedin,function (req, res, next){
-  var new_issue = new issue({
-    item: req.body.item,
-    issued_by: req.body.issued_by,
-    phone: req.body.phone,
-    quantity: req.body.quantity,
-    issue_date: req.body.issue_date,
-    issue_verified_by: req.body.issue_verified_by
-  });
-  new_issue.save(function(err){
-    if(err){
-      console.log(err);
-    }
-    else{
-      res.redirect('/dashboard');
-    }
-  });
-});
-
-router.get('/dashboard',isloggedin,function (req, res, next){
-  console.log(req.session);
-
-    issue.find({},function(err, foundIssues){
-      if(err){
-        console.log(err);
-        res.send(err);
-      }
-      else{
-        res.render('dashboard',{issueList: foundIssues});
-      }
   });
 });
 

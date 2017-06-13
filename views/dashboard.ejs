@@ -72,14 +72,14 @@
             <th></th>
           </thead>
           <tbody>
-            <%for(var i=0;i<issueList.length;i++){%>
+            <%for(var i=0;i<returnissues.length;i++){%>
               <tr>
-                <td><%= issueList[i].item%></td>
-                <td><%= issueList[i].quantity%></td>
-                <td><%= issueList[i].issued_by%></td>
-                <td><%= issueList[i].phone%></td>
-                <td><%= issueList[i].issue_date%></td>
-                <td><%= issueList[i].issue_verified_by%></td>
+                <td><%= returnissues[i].item%></td>
+                <td><%= returnissues[i].quantity%></td>
+                <td><%= returnissues[i].issued_by%></td>
+                <td><%= returnissues[i].phone%></td>
+                <td><%= returnissues[i].issue_date%></td>
+                <td><%= returnissues[i].issue_verified_by%></td>
                 <td><button type="button" class="return-button btn btn-danger" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Delete</button></td>
               </tr>
               <% } %>
