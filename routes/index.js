@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var admin = require('../models/admin');
 var issue = require('../models/issueList');
 var path = require('path');
 
@@ -46,28 +45,6 @@ router.get('/dashboard',isloggedin,function (req, res, next){
       });
     }
   });
-});
-
-router.post('/login',function(req,res,next) {
-  if(!req.body){
-    res.send("Please send some data");
-  }
-  else{
-    admin.findOne({'admin':req.body.username,'password':req.body.password},function(err,admin) {
-      if(err) {
-        console.log(err);
-        res.redirect('/logout');
-      }else {
-        if(admin){
-          req.session.admin = "zairza";
-          res.redirect('/dashboard');
-        }
-        else{
-          res.redirect('/');
-        }
-      }
-    })
-  }
 });
 
 router.post('/returnitem',isloggedin,function (req, res, next){
@@ -131,9 +108,4 @@ router.post('/deleteissue', isloggedin, function(req,res,next){
     }
     res.redirect('/dashboard');
   });
-});
-
-router.get('/logout',function (req, res, next){
-    req.session.admin = null;
-    res.redirect('/');
 });

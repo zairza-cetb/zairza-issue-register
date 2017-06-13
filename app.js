@@ -8,6 +8,7 @@ var expressLayouts = require('express-ejs-layouts');
 var session = require('express-session');
 var Admin = require('./models/admin');
 var index = require('./routes/index');
+var user = require('./routes/user');
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/issueRegister');
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
