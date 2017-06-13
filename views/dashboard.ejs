@@ -44,8 +44,8 @@
                  <td><%= issueList[i].phone%></td>
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
-                 <td><button type="button" class="return-button btn btn-success" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
-                 <td><button onclick="editme('<%=issueList[i].item%>',<%=issueList[i].quantity%>,'<%=issueList[i].issued_by%>',<%=issueList[i].phone%>,'<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="return-button btn btn-primary" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
+                 <td><button onclick="returnme('<%= issueList[i].issued_by%>','<%= issueList[i].issue_verified_by%>','<%= issueList[i]._id%>')" type="button" class="return-button btn btn-success" data-toggle="modal" data-target="#returnIssue">Return</button></td>
+                 <td><button onclick="editme('<%=issueList[i].item%>','<%=issueList[i].quantity%>','<%=issueList[i].issued_by%>','<%=issueList[i].phone%>','<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="return-button btn btn-primary" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
              </tr>
@@ -210,9 +210,9 @@
                 <table width="100%">
                  <tr>
                    <th style="float:right">Returned by: </th>
-                   <td><input type="text" name="returned_by"></td>
+                   <td><input type="text" id="returned_by" name="returned_by"></td>
                    <th style="float:right">Verified by:</th>
-                   <td><input type="text" name="return_verified_by"></td>
+                   <td><input type="text" id="return_verified_by" name="return_verified_by"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -220,12 +220,12 @@
                  </tr>
                  <tr>
                    <th style="float:right">Date: </th>
-                   <td><input type="date" name="return_date"></td>
+                   <td><input type="date" id="return_date" name="return_date"></td>
                  </tr>
                  <tr>
                  <tr>
                    <th style="float:right"></th>
-                   <td><input type="hidden" name="_id" value="" id="hidden-id-field"></td>
+                   <td><input type="hidden" name="return_id" id="return_id"></td>
                  </tr>
                    <td><font color="#ffffff">""</font>
                    </td>
@@ -272,11 +272,11 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <script>
-    $(document).on("click", ".return-button", function () {
-     var returnId = $(this).data('id');
-     console.log(returnId);
-     $("#hidden-id-field").val( returnId );
-    });
+    // $(document).on("click", ".return-button", function () {
+    //  var returnId = $(this).data('id');
+    //  console.log(returnId);
+    //  $("#hidden-id-field").val( returnId );
+    // });
     $('#due-issue-list').DataTable();
     $('#issue-list').DataTable();
     $('#addIssue').modal('show')
@@ -291,6 +291,15 @@
       document.getElementById("issue_verified_by").value = issue_verified_by;
       document.getElementById("edit_id").value = editid;
       // document.getElementById("issue_date").value = issue_date;
+    }
+
+    function returnme(issuedby,issueverifiedby,issueid){
+      document.getElementById('returned_by').value = issuedby;
+      document.getElementById('return_verified_by').value = issueverifiedby;
+      var d = new Date();
+      var n = d.toISOString();
+      var rdate = n.substring(0,10);
+      document.getElementById('return_date').value = rdate;
     }
 
     function deleteme(deleteid){
