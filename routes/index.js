@@ -124,6 +124,15 @@ router.post('/edititem', isloggedin, function(req,res,next){
   });
 });
 
+router.post('/deleteissue', isloggedin, function(req,res,next){
+  issue.remove({_id : req.body.del_issue_id}, function(err, result){
+    if(err){
+      console.log(err);
+    }
+    res.redirect('/dashboard');
+  });
+});
+
 router.get('/logout',function (req, res, next){
     req.session.admin = null;
     res.redirect('/');

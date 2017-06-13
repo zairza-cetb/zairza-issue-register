@@ -80,7 +80,7 @@
                 <td><%= returnissues[i].phone%></td>
                 <td><%= returnissues[i].issue_date%></td>
                 <td><%= returnissues[i].issue_verified_by%></td>
-                <td><button type="button" class="return-button btn btn-danger" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Delete</button></td>
+                <td><button onclick="deleteme('<%= returnissues[i]._id%>')" type="button" class="return-button btn btn-danger" data-toggle="modal" data-target="#deleteIssue">Delete</button></td>
               </tr>
               <% } %>
             </tr>
@@ -243,6 +243,28 @@
           </div>
         </div>
       </div>
+
+      <!-- Delete Issue Modal -->
+      <div id="deleteIssue" class="modal fade">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"><b>Delete Issue</b></h4>
+            </div>
+            <div class="modal-body">
+              <form action="/deleteissue" method="post">
+                <input type="hidden" id="del_issue_id" name="del_issue_id">
+              Are you sure you want to delete this data?
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Yes</button>
+            </form>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -270,5 +292,10 @@
       document.getElementById("edit_id").value = editid;
       // document.getElementById("issue_date").value = issue_date;
     }
+
+    function deleteme(deleteid){
+      document.getElementById("del_issue_id").value = deleteid;
+    }
+
   </script>
 </html>
