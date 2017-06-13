@@ -71,7 +71,7 @@ router.post('/login',function(req,res,next) {
 });
 
 router.post('/returnitem',isloggedin,function (req, res, next){
-  issue.findOneAndUpdate({_id: req.body._id}, {$set:{returned_by: req.body.returned_by, return_verified_by: req.body.return_verified_by, return_date: req.body.return_date, is_returned: true}}, {new: true}, function(err, doc){
+  issue.findOneAndUpdate({_id: req.body.return_id}, {$set:{returned_by: req.body.returned_by, return_verified_by: req.body.return_verified_by, return_date: req.body.return_date, is_returned: true}}, {new: true}, function(err, doc){
     if(err){
         console.log("Something wrong when updating data!");
     }

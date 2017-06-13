@@ -45,7 +45,7 @@
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
                  <td><button onclick="returnme('<%= issueList[i].issued_by%>','<%= issueList[i].issue_verified_by%>','<%= issueList[i]._id%>')" type="button" class="return-button btn btn-success" data-toggle="modal" data-target="#returnIssue">Return</button></td>
-                 <td><button onclick="editme('<%=issueList[i].item%>','<%=issueList[i].quantity%>','<%=issueList[i].issued_by%>','<%=issueList[i].phone%>','<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="return-button btn btn-primary" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
+                 <td><button onclick="editme('<%=issueList[i].item%>','<%=issueList[i].quantity%>','<%=issueList[i].issued_by%>','<%=issueList[i].phone%>','<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
              </tr>
@@ -53,7 +53,7 @@
          </table>
        </div>
        <div class="row text-center" style="margin-bottom:6%">
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
+        <button onclick="addme()" type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
       </div>
 
       <!-- Issues returned -->
@@ -123,9 +123,10 @@
                  </tr>
                  <tr>
                    <th style="float:right">Date:</th>
-                   <td><input type="date" name="issue_date"></td>
+                   <td><input type="date" id="issue_date" name="issue_date"></td>
                    <th style="float:right">Verified by:</th>
                    <td><input type="text" name="issue_verified_by"></td>
+                   <td><input type="hidden" id="hidden_date" name="hidden_date"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -272,16 +273,19 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <script>
-    // $(document).on("click", ".return-button", function () {
-    //  var returnId = $(this).data('id');
-    //  console.log(returnId);
-    //  $("#hidden-id-field").val( returnId );
-    // });
     $('#due-issue-list').DataTable();
     $('#issue-list').DataTable();
     $('#addIssue').modal('show')
     $('#returnIssue').modal('show')
     $('#editIssue').modal('show')
+
+    function addme(){
+      var d = new Date();
+      var n = d.toISOString();
+      var idate = n.substring(0,10);
+      document.getElementById('issue_date').value = idate;
+      document.getElementById('hidden_date').value = d;
+    }
 
     function editme(item,quantity,issued_by,phone,issue_date,issue_verified_by,editid) {
       document.getElementById("item").value = item;
@@ -290,12 +294,16 @@
       document.getElementById("phone").value = phone;
       document.getElementById("issue_verified_by").value = issue_verified_by;
       document.getElementById("edit_id").value = editid;
-      // document.getElementById("issue_date").value = issue_date;
+      var d = new Date(issue_date);
+      var n = d.toISOString();
+      var edate = n.substring(0,10);
+      document.getElementById("issue_date").value = edate;
     }
 
     function returnme(issuedby,issueverifiedby,issueid){
       document.getElementById('returned_by').value = issuedby;
       document.getElementById('return_verified_by').value = issueverifiedby;
+      document.getElementById('return_id').value = issueid;
       var d = new Date();
       var n = d.toISOString();
       var rdate = n.substring(0,10);
