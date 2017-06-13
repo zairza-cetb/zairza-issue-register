@@ -45,7 +45,7 @@
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
                  <td><button type="button" class="return-button btn btn-success" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#returnIssue">Return</button></td>
-                 <td><button onclick="editme('<%=issueList[i].item%>',<%=issueList[i].quantity%>,'<%=issueList[i].issued_by%>',<%=issueList[i].phone%>,'<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>')" type="button" class="return-button btn btn-primary" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
+                 <td><button onclick="editme('<%=issueList[i].item%>',<%=issueList[i].quantity%>,'<%=issueList[i].issued_by%>',<%=issueList[i].phone%>,'<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="return-button btn btn-primary" data-toggle="modal" data-id="<%= issueList[i]._id %>" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
              </tr>
@@ -156,7 +156,7 @@
                 <table width="100%">
                  <tr>
                    <th style="float:right">Item: </th>
-                   <td><input id="item" type="text" name="item" value="issueList[i].item"></td>
+                   <td><input id="item" type="text" name="item"></td>
                    <th style="float:right">Quantity: </th>
                    <td><input id="quantity" type="number" name="quantity"></td>
                  </tr>
@@ -179,6 +179,7 @@
                    <td><input id="issue_date" type="date" name="issue_date"></td>
                    <th style="float:right">Verified by:</th>
                    <td><input id="issue_verified_by" type="text" name="issue_verified_by"></td>
+                   <td><input type="hidden" name="edit_id" value="" id="edit_id"></td>
                  </tr>
                  <tr>
                    <td><font color="#ffffff">""</font>
@@ -260,19 +261,13 @@
     $('#returnIssue').modal('show')
     $('#editIssue').modal('show')
 
-    function editme(item,quantity,issued_by,phone,issue_date,issue_verified_by) {
+    function editme(item,quantity,issued_by,phone,issue_date,issue_verified_by,editid) {
       document.getElementById("item").value = item;
       document.getElementById("quantity").value = quantity;
       document.getElementById("issued_by").value = issued_by;
       document.getElementById("phone").value = phone;
-      var date = new Date(issue_date);
-      var converted_date = (date.getFullYear() + '-' + (date.getMonth() + 1) + '-' +  date.getDate());
-      console.log(converted_date);
-      // console.log(converted_date);
-      var iso = new Date('2017-5-17').toISOString();
-      console.log("iso= "+iso);
-      document.getElementById("issue_date").value = iso;
       document.getElementById("issue_verified_by").value = issue_verified_by;
+      document.getElementById("edit_id").value = editid;
       // document.getElementById("issue_date").value = issue_date;
     }
   </script>

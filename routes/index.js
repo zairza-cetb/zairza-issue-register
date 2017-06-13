@@ -60,6 +60,32 @@ router.post('/returnitem',isloggedin,function (req, res, next){
   res.redirect('/dashboard');
 });
 
+router.post('/edititem', isloggedin, function(req,res,next){
+  issue.findOne({_id : req.body.edit_id},function(err,id){
+    if(err){
+      console.log(err);
+    }
+    else {
+      if(id){
+        id.item = req.body.item;
+        id.issued_by = req.body.issued_by;
+        id.phone = req.body.phone;
+        id.quantity = req.body.quantity;
+        id.issue_date = req.body.issue_date;
+        id.issue_verified_by = req.body.issue_verified_by;
+        id.save(function(err){
+          if (err){
+            return handleError(err);
+          }
+          else{
+            res.redirect('/dashboard');
+          }
+        });
+      }
+    }
+  });
+});
+
 router.post('/additem',isloggedin,function (req, res, next){
   var new_issue = new issue({
     item: req.body.item,
