@@ -306,7 +306,40 @@
             </div>
             <div class="modal-body">
               <form action='/returnitem' method='POST'>
-                <table width="100%">
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col col-sm-2 text-right">
+                       Returned by:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" id="returned_by" type="text" name="returned_by" class="form-control input-lg col-lg-4">
+                    </div>
+                    <div class="col col-sm-2 text-right">
+                       Verified by:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" id="return_verified_by" type="text" name="return_verified_by" class="form-control input-lg col-lg-4">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col col-sm-2 text-right">
+                       Date:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" id="return_date" type="date" name="return_date" class="form-control input-lg col-lg-4">
+                    </div>
+                     <input class="form-control input-sm" type="hidden" name="return_id" id="return_id">
+                    <!-- <div class="col col-sm-2 text-right">
+                       Verified by:
+                    </div> -->
+                    <!-- <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" id="return_verified_by" type="text" name="return_verified_by" class="form-control input-lg col-lg-4">
+                    </div> -->
+                  </div>
+                </div>
+
+                <!-- <table width="100%">
                  <tr>
                    <th style="float:right">Returned by: </th>
                    <td><input type="text" id="returned_by" name="returned_by"></td>
@@ -333,7 +366,7 @@
                    <td><font color="#ffffff">""</font>
                    </td>
                  </tr>
-               </table>
+               </table> -->
                <div class="modal-footer">
                  <input type="submit" value="Return" class="btn btn-primary">
                </div>
