@@ -45,7 +45,7 @@
                  <td><%= issueList[i].phone%></td>
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
-                 <td><button onclick="returnme('<%= issueList[i].issued_by%>','<%= issueList[i].issue_verified_by%>','<%= issueList[i]._id%>')" type="button" class="return-button btn btn-success" data-toggle="modal" data-target="#returnIssue">Return</button></td>
+                 <td><button onclick="returnme('<%= issueList[i].issued_by%>','<%= issueList[i].issue_verified_by%>','<%= issueList[i]._id%>')" type="button" style="background-color:#26C6DA" class="return-button btn" data-toggle="modal" data-target="#returnIssue"><font color="#ffffff">Return</font></button></td>
                  <td><button onclick="editme('<%=issueList[i].item%>','<%=issueList[i].quantity%>','<%=issueList[i].issued_by%>','<%=issueList[i].phone%>','<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
@@ -54,7 +54,9 @@
          </table>
        </div>
        <div class="row text-center" style="margin-bottom:6%">
-        <button onclick="addme()" type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button>
+        <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button> -->
+        <button type="button" class="btn" style="background-color:#673AB7" data-toggle="modal" data-target="#addIssue"><font color="#ffffff">Add New Issue</font></button>
+        <!-- <button type="button" style="color:green" data-toggle="modal" data-target="#addIssue">Add New Issue</button> -->
       </div>
 
       <!-- Issues returned -->
@@ -153,43 +155,8 @@
                     <div class="col col-sm-4 text-left">
                        <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" name="issue_verified_by" class="form-control input-lg col-lg-4">
                     </div>
-                    <input class="form-control input-sm" type="hidden" id="hidden_date" name="hidden_date">
                   </div>
                 </div>
-
-                <!-- <table width="100%">
-                 <tr>
-                   <th style="float:right">Item: </th>
-                   <td><input type="text" name="item"></td>
-                   <th style="float:right">Quantity: </th>
-                   <td><input type="number" name="quantity"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <th>Issued by:</th>
-                   <td><input type="text" name="issued_by"></td>
-                   <th style="float:right">Phone no.:</th>
-                   <td><input type="text" name="phone"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <th style="float:right">Date:</th>
-                   <td><input type="date" id="add_issue_date" name="add_issue_date"></td>
-                   <th style="float:right">Verified by:</th>
-                   <td><input type="text" name="issue_verified_by"></td>
-                   <td><input type="hidden" id="hidden_date" name="hidden_date"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-               </table> -->
                <div class="modal-footer">
                  <input type="submit" value="Add Item" class="btn btn-primary">
                </div>
@@ -248,7 +215,14 @@
                        Date:
                     </div>
                     <div class="col col-sm-4 text-left">
-                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="Date" id="edit_issue_date" name="add_issue_date" class="form-control input-lg col-lg-4">
+                      <div class="form-group">
+                        <div class='input-group date' id='datetimepicker2'>
+                          <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" id="edit_issue_date" name="edit_issue_date" class="form-control input-lg col-lg-4">
+                           <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                     <div class="col col-sm-2 text-right">
                        Verified by:
@@ -259,40 +233,6 @@
                     <input class="form-control input-sm" type="hidden" id="edit_id" name="edit_id">
                   </div>
                 </div>
-
-                <!-- <table width="100%">
-                 <tr>
-                   <th style="float:right">Item: </th>
-                   <td><input id="item" type="text" name="item"></td>
-                   <th style="float:right">Quantity: </th>
-                   <td><input id="quantity" type="number" name="quantity"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <th>Issued by:</th>
-                   <td><input id="issued_by" type="text" name="issued_by"></td>
-                   <th style="float:right">Phone no.:</th>
-                   <td><input id="phone" type="text" name="phone"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <th style="float:right">Date:</th>
-                   <td><input id="edit_issue_date" type="date" name="edit_issue_date"></td>
-                   <th style="float:right">Verified by:</th>
-                   <td><input id="issue_verified_by" type="text" name="issue_verified_by"></td>
-                   <td><input type="hidden" name="edit_id" value="" id="edit_id"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-               </table> -->
                <div class="modal-footer">
                  <input type="submit" value="Submit" class="btn btn-primary">
                </div>
@@ -330,51 +270,23 @@
                        <input class="form-control input-sm" style="background-color:lavenderblush;" id="return_verified_by" type="text" name="return_verified_by" class="form-control input-lg col-lg-4">
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row" style="margin-top:4%">
                     <div class="col col-sm-2 text-right">
                        Date:
                     </div>
                     <div class="col col-sm-4 text-left">
-                       <input class="form-control input-sm" style="background-color:lavenderblush;" id="return_date" type="date" name="return_date" class="form-control input-lg col-lg-4">
+                      <div class="form-group">
+                        <div class='input-group date' id='datetimepicker3'>
+                          <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" id="return_date" name="return_date" class="form-control input-lg col-lg-4">
+                           <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                      <input class="form-control input-sm" type="hidden" name="return_id" id="return_id">
-                    <!-- <div class="col col-sm-2 text-right">
-                       Verified by:
-                    </div> -->
-                    <!-- <div class="col col-sm-4 text-left">
-                       <input class="form-control input-sm" style="background-color:lavenderblush;" id="return_verified_by" type="text" name="return_verified_by" class="form-control input-lg col-lg-4">
-                    </div> -->
                   </div>
                 </div>
-
-                <!-- <table width="100%">
-                 <tr>
-                   <th style="float:right">Returned by: </th>
-                   <td><input type="text" id="returned_by" name="returned_by"></td>
-                   <th style="float:right">Verified by:</th>
-                   <td><input type="text" id="return_verified_by" name="return_verified_by"></td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <th style="float:right">Date: </th>
-                   <td><input type="date" id="return_date" name="return_date"></td>
-                 </tr>
-                 <tr>
-                 <tr>
-                   <th style="float:right"></th>
-                   <td><input type="hidden" name="return_id" id="return_id"></td>
-                 </tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-                 <tr>
-                   <td><font color="#ffffff">""</font>
-                   </td>
-                 </tr>
-               </table> -->
                <div class="modal-footer">
                  <input type="submit" value="Return" class="btn btn-primary">
                </div>
@@ -427,13 +339,13 @@
         $('#datetimepicker1').datetimepicker();
       });
 
-    function addme(){
-      // var d = new Date();
-      // var n = d.toISOString();
-      // var idate = n.substring(0,10);
-      // document.getElementById('add_issue_date').value = idate;
-      // document.getElementById('hidden_date').value = d;
-    }
+    $(function () {
+        $('#datetimepicker2').datetimepicker();
+      });
+
+    $(function () {
+        $('#datetimepicker3').datetimepicker();
+      });
 
     function editme(item,quantity,issued_by,phone,issue_date,issue_verified_by,editid) {
       document.getElementById("item").value = item;
@@ -442,22 +354,13 @@
       document.getElementById("phone").value = phone;
       document.getElementById("issue_verified_by").value = issue_verified_by;
       document.getElementById("edit_id").value = editid;
-      // var d = new Date(issue_date);
-      // var n = d.toISOString();
-      // var edate = n.substring(0,10);
-      // document.getElementById("edit_issue_date").value = edate;
-      // console.log("edate = "+edate);
+      document.getElementById("edit_issue_date").value = issue_date;
     }
 
     function returnme(issuedby,issueverifiedby,issueid){
       document.getElementById('returned_by').value = issuedby;
       document.getElementById('return_verified_by').value = issueverifiedby;
       document.getElementById('return_id').value = issueid;
-      // var d = new Date();
-      // var n = d.toISOString();
-      // var rdate = n.substring(0,10);
-      // document.getElementById('return_date').value = rdate;
-      // console.log("rdate = "+rdate);
     }
 
     function deleteme(deleteid){

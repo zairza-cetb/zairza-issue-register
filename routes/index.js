@@ -68,7 +68,7 @@ router.post('/additem',isloggedin,function (req, res, next){
     issued_by: req.body.issued_by,
     phone: req.body.phone,
     quantity: req.body.quantity,
-    issue_date: req.body.hidden_date,
+    issue_date: req.body.add_issue_date,
     issue_verified_by: req.body.issue_verified_by
   });
   new_issue.save(function(err){
