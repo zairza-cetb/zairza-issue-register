@@ -1,2 +1,2 @@
 # zairza-issue-register
-We are implementing a online issue register for Zairza.
+We are implementing an online issue register for Zairza.

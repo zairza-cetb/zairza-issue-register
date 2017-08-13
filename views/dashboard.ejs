@@ -93,14 +93,63 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title"><h3>New Issue</h3></h5>
+              <h4 class="modal-title" style="margin-top:3%"><font size="5dp">New Issue</font></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <form action='/additem' method='POST'>
-                <table width="100%">
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col col-sm-2 text-right">
+                       Item:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" name="item" class="form-control input-lg col-lg-4">
+                    </div>
+                    <div class="col col-sm-2 text-right">
+                       Quantity:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="number" name="quantity" class="form-control input-lg col-lg-4">
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top:4%">
+                    <div class="col col-sm-2 text-right">
+                       Issued by:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" name="issued_by" class="form-control input-lg col-lg-4">
+                    </div>
+                    <div class="col col-sm-2 text-right">
+                       Phone no.:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" name="phone" class="form-control input-lg col-lg-4">
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top:4%">
+                    <div class="col col-sm-2 text-right">
+                       Date:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="Date" id="add_issue_date" name="add_issue_date" class="form-control input-lg col-lg-4">
+                    </div>
+                    <div class="col col-sm-2 text-right">
+                       Verified by:
+                    </div>
+                    <div class="col col-sm-4 text-left">
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" type="text" name="issue_verified_by" class="form-control input-lg col-lg-4">
+                    </div>
+                    <input class="form-control input-sm" type="hidden" id="hidden_date" name="hidden_date">
+                  </div>
+                </div>
+
+                <!-- <table width="100%">
                  <tr>
                    <th style="float:right">Item: </th>
                    <td><input type="text" name="item"></td>
@@ -123,7 +172,7 @@
                  </tr>
                  <tr>
                    <th style="float:right">Date:</th>
-                   <td><input type="date" id="issue_date" name="issue_date"></td>
+                   <td><input type="date" id="add_issue_date" name="add_issue_date"></td>
                    <th style="float:right">Verified by:</th>
                    <td><input type="text" name="issue_verified_by"></td>
                    <td><input type="hidden" id="hidden_date" name="hidden_date"></td>
@@ -132,7 +181,7 @@
                    <td><font color="#ffffff">""</font>
                    </td>
                  </tr>
-               </table>
+               </table> -->
                <div class="modal-footer">
                  <input type="submit" value="Add Item" class="btn btn-primary">
                </div>
@@ -177,7 +226,7 @@
                  </tr>
                  <tr>
                    <th style="float:right">Date:</th>
-                   <td><input id="issue_date" type="date" name="issue_date"></td>
+                   <td><input id="edit_issue_date" type="date" name="edit_issue_date"></td>
                    <th style="float:right">Verified by:</th>
                    <td><input id="issue_verified_by" type="text" name="issue_verified_by"></td>
                    <td><input type="hidden" name="edit_id" value="" id="edit_id"></td>
@@ -273,17 +322,18 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <script>
-    $('#due-issue-list').DataTable();
-    $('#issue-list').DataTable();
-    $('#addIssue').modal('show')
-    $('#returnIssue').modal('show')
-    $('#editIssue').modal('show')
+    $('#due-issue-list').DataTable({
+      order : []
+    });
+    $('#issue-list').DataTable({
+      order : []
+    });
 
     function addme(){
       var d = new Date();
       var n = d.toISOString();
       var idate = n.substring(0,10);
-      document.getElementById('issue_date').value = idate;
+      document.getElementById('add_issue_date').value = idate;
       document.getElementById('hidden_date').value = d;
     }
 
@@ -297,7 +347,8 @@
       var d = new Date(issue_date);
       var n = d.toISOString();
       var edate = n.substring(0,10);
-      document.getElementById("issue_date").value = edate;
+      document.getElementById("edit_issue_date").value = edate;
+      console.log("edate = "+edate);
     }
 
     function returnme(issuedby,issueverifiedby,issueid){
@@ -308,6 +359,7 @@
       var n = d.toISOString();
       var rdate = n.substring(0,10);
       document.getElementById('return_date').value = rdate;
+      console.log("rdate = "+rdate);
     }
 
     function deleteme(deleteid){

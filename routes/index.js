@@ -40,6 +40,12 @@ router.get('/dashboard',isloggedin,function (req, res, next){
             console.log(err);
           }
           else{
+            due_issues = due_issues.sort(function(a,b) {
+              return a.issue_date < b.issue_date;
+            });
+            returned_issues = returned_issues.sort(function(a,b) {
+              return a.return_date < b.return_date;
+            });
             res.render('dashboard',{issueList : due_issues, returnissues : returned_issues});
           }
       });
@@ -62,7 +68,7 @@ router.post('/additem',isloggedin,function (req, res, next){
     issued_by: req.body.issued_by,
     phone: req.body.phone,
     quantity: req.body.quantity,
-    issue_date: req.body.issue_date,
+    issue_date: req.body.hidden_date,
     issue_verified_by: req.body.issue_verified_by
   });
   new_issue.save(function(err){
@@ -86,7 +92,7 @@ router.post('/edititem', isloggedin, function(req,res,next){
         id.issued_by = req.body.issued_by;
         id.phone = req.body.phone;
         id.quantity = req.body.quantity;
-        id.issue_date = req.body.issue_date;
+        id.issue_date = req.body.edit_issue_date;
         id.issue_verified_by = req.body.issue_verified_by;
         id.save(function(err){
           if (err){
