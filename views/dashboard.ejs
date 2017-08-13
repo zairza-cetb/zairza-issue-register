@@ -26,15 +26,15 @@
        </div>
        <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;">
          <table id="due-issue-list" class="display" width="100%">
-           <thead>
-             <th>Item</th>
-             <th>Quantity</th>
-             <th>Issued by</th>
-             <th>Phone no.</th>
-             <th>Issue date</th>
-             <th>Issue verified by</th>
-             <th></th>
-             <th></th>
+           <thead style="background-color:#673AB7">
+             <th style="color:#ffffff">Item</th>
+             <th style="color:#ffffff">Quantity</th>
+             <th style="color:#ffffff">Issued by</th>
+             <th style="color:#ffffff">Phone no.</th>
+             <th style="color:#ffffff">Issue date</th>
+             <th style="color:#ffffff">Issue verified by</th>
+             <th style="color:#ffffff"></th>
+             <th style="color:#ffffff"></th>
            </thead>
            <tbody>
              <%for(var i=0;i<issueList.length;i++){%>
@@ -45,7 +45,7 @@
                  <td><%= issueList[i].phone%></td>
                  <td><%= issueList[i].issue_date%></td>
                  <td><%= issueList[i].issue_verified_by%></td>
-                 <td><button onclick="returnme('<%= issueList[i].issued_by%>','<%= issueList[i].issue_verified_by%>','<%= issueList[i]._id%>')" type="button" style="background-color:#26C6DA" class="return-button btn" data-toggle="modal" data-target="#returnIssue"><font color="#ffffff">Return</font></button></td>
+                 <td><button onclick="returnme('<%= issueList[i].issued_by%>','<%= issueList[i].issue_verified_by%>','<%= issueList[i]._id%>')" type="button" style="background-color:#006064" class="return-button btn" data-toggle="modal" data-target="#returnIssue"><font color="#ffffff">Return</font></button></td>
                  <td><button onclick="editme('<%=issueList[i].item%>','<%=issueList[i].quantity%>','<%=issueList[i].issued_by%>','<%=issueList[i].phone%>','<%=issueList[i].issue_date%>','<%=issueList[i].issue_verified_by%>','<%=issueList[i]._id%>')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editIssue" >Edit</button></td>
                </tr>
                <% } %>
@@ -55,24 +55,24 @@
        </div>
        <div class="row text-center" style="margin-bottom:6%">
         <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addIssue">Add New Issue</button> -->
-        <button type="button" class="btn" style="background-color:#673AB7" data-toggle="modal" data-target="#addIssue"><font color="#ffffff">Add New Issue</font></button>
+        <button onclick="add_new_item()" type="button" class="btn" style="background-color:#673AB7" data-toggle="modal" data-target="#addIssue"><font color="#ffffff">Add New Issue</font></button>
         <!-- <button type="button" style="color:green" data-toggle="modal" data-target="#addIssue">Add New Issue</button> -->
       </div>
 
       <!-- Issues returned -->
       <div class="row text-center">
-        <h3><b><u>ISSUE LIST</u></b></h3>
+        <h3><b><u>HISTORY</u></b></h3>
       </div>
       <div class="row" style="margin-bottom:2%;margin-left:1%;margin-right:1%;margin-top:2%;">
         <table id="issue-list" class="display" width="100%">
-          <thead>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Issued by</th>
-            <th>Phone no.</th>
-            <th>Issue date</th>
-            <th>Issue verified by</th>
-            <th></th>
+          <thead style="background-color:#673AB7">
+            <th style="color:#ffffff">Item</th>
+            <th style="color:#ffffff">Quantity</th>
+            <th style="color:#ffffff">Issued by</th>
+            <th style="color:#ffffff">Phone no.</th>
+            <th style="color:#ffffff">Issue date</th>
+            <th style="color:#ffffff">Issue verified by</th>
+            <th style="color:#ffffff"></th>
           </thead>
           <tbody>
             <%for(var i=0;i<returnissues.length;i++){%>
@@ -347,6 +347,11 @@
         $('#datetimepicker3').datetimepicker();
       });
 
+      function add_new_item(){
+        var date = new Date();
+        document.getElementById("add_issue_date").value = date;
+      }
+
     function editme(item,quantity,issued_by,phone,issue_date,issue_verified_by,editid) {
       document.getElementById("item").value = item;
       document.getElementById("quantity").value = quantity;
@@ -361,6 +366,8 @@
       document.getElementById('returned_by').value = issuedby;
       document.getElementById('return_verified_by').value = issueverifiedby;
       document.getElementById('return_id').value = issueid;
+      var date = new Date();
+      document.getElementById('return_date').value = date;
     }
 
     function deleteme(deleteid){
